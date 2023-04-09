@@ -66,7 +66,7 @@ export const Home = () => {
         ) : (
           <>
             <SearchInput value={query} onChange={handleOnChange} />
-            <div className="flex w-full justify-end">
+            <div className="flex w-full justify-end mt-8">
               <Link href="/favourites">
                 <Button title="Favourites" onClick={() => null} />
               </Link>

@@ -47,6 +47,7 @@ export const Favourites = () => {
                         title={media.title}
                         type={media.type}
                         vote_average={media.vote_average}
+                        showDelete
                         handleMediaClick={() =>
                           handleMediaClick(media.id, media.type)
                         }

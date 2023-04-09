@@ -15,6 +15,7 @@ interface Props {
   release_date: string;
   vote_average: number;
   poster_path: string;
+  showDelete?: boolean;
   handleMediaClick: (id: number, type: MediaType) => void;
 }
 
@@ -25,6 +26,7 @@ export const Card = ({
   release_date,
   title,
   vote_average = 0,
+  showDelete = false,
   handleMediaClick,
 }: Props) => {
   const dispatch = useDispatch();
@@ -46,7 +48,9 @@ export const Card = ({
         className="top-2 right-2"
         rating={Math.round(vote_average * 10) / 10}
       />
-      <TrashIcon onDeleteClick={(e) => handleDeleteFromFavourites(e, id)} />
+      {showDelete && (
+        <TrashIcon onDeleteClick={(e) => handleDeleteFromFavourites(e, id)} />
+      )}
       <Image
         src={getImgUrl(poster_path)}
         alt="media-poster"
