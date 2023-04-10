@@ -10,7 +10,7 @@ export const SearchInput = ({ onChange, value }: Props) => {
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
       >
-        Search
+        Search by title or genre
       </label>
       <div className="relative lg:w-96 xl:w-96">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -33,7 +33,7 @@ export const SearchInput = ({ onChange, value }: Props) => {
         <input
           id="default-search"
           className="block w-full py-4 p-10 text-sm text-white border border-gray-600 rounded-lg bg-gray-600 focus:border-gray-500 hover:border-gray-500 lg:w-96 xl:w-96"
-          placeholder="Search..."
+          placeholder="Search by title or genre"
           value={value}
           onChange={onChange}
         />

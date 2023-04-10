@@ -9,6 +9,7 @@ export const GET_TOP_MEDIA = gql(/* GraphQL */ `
       release_date
       vote_average
       type
+      genres
     }
   }
 `);

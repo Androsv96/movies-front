@@ -44,10 +44,7 @@ export const Card = ({
       key={title}
       onClick={() => handleMediaClick(id, type)}
     >
-      <Rating
-        className="top-2 right-2"
-        rating={Math.round(vote_average * 10) / 10}
-      />
+      <Rating className="top-2 right-2" rating={vote_average} />
       {showDelete && (
         <TrashIcon onDeleteClick={(e) => handleDeleteFromFavourites(e, id)} />
       )}

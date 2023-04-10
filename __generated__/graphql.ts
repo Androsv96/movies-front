@@ -21,6 +21,7 @@ export type Genres = {
 
 export type Media = {
   __typename?: 'Media';
+  genres?: Maybe<Array<Maybe<Scalars['String']>>>;
   id: Scalars['Int'];
   poster_path?: Maybe<Scalars['String']>;
   release_date?: Maybe<Scalars['String']>;

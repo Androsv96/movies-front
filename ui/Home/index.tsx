@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { useQuery } from "@apollo/client";
 
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { GET_TOP_MEDIA } from "@/graphql/Movies/querys";
 import {
   Button,
@@ -15,14 +17,12 @@ import {
 } from "@/components";
 import { MEDIA } from "@/utils/interfaces";
 import { useRouter } from "next/router";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { MediaType } from "@/__generated__/graphql";
 import {
   setCurrentPage,
   setFilteredMedia,
   setQuery,
 } from "@/redux/slices/pages";
-import Link from "next/link";
 
 export const Home = () => {
   const router = useRouter();
@@ -50,8 +50,12 @@ export const Home = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!query && data) dispatch(setFilteredMedia(data.media));
-      const filteredData = data?.media.filter((media) =>
-        media.title?.toLowerCase().includes(query.toLowerCase())
+      const filteredData = data?.media.filter(
+        (media) =>
+          media.title?.toLowerCase().includes(query.toLowerCase()) ||
+          media.genres?.some((genre) =>
+            genre?.toLowerCase().includes(query.toLowerCase())
+          )
       );
       dispatch(setFilteredMedia(filteredData || []));
     }, 0);
