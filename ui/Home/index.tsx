@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 
-import Image from "next/image";
 import Link from "next/link";
 
 import { useQuery } from "@apollo/client";

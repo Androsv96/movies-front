@@ -48,6 +48,16 @@ export enum MediaType {
   Tv = 'tv'
 }
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  createSession: CreateSession;
+};
+
+
+export type MutationCreateSessionArgs = {
+  requestToken: Scalars['String'];
+};
+
 export type ProductionCompanies = {
   __typename?: 'ProductionCompanies';
   id: Scalars['Int'];
@@ -56,6 +66,7 @@ export type ProductionCompanies = {
 
 export type Query = {
   __typename?: 'Query';
+  getRequestToken: RequestToken;
   media: Array<Media>;
   mediaDetails: MediaDetails;
   mediasDetails: Array<MediaDetails>;
@@ -80,4 +91,17 @@ export type QueryMediasDetailsArgs = {
 export type VariousMediaDetails = {
   id: Scalars['Int'];
   type: MediaType;
+};
+
+export type CreateSession = {
+  __typename?: 'createSession';
+  session_id?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
+};
+
+export type RequestToken = {
+  __typename?: 'requestToken';
+  expires_at?: Maybe<Scalars['String']>;
+  request_token?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
 };

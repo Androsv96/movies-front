@@ -1,4 +1,9 @@
-import { Media, MediaDetails } from "@/__generated__/graphql";
+import {
+  CreateSession,
+  Media,
+  MediaDetails,
+  RequestToken,
+} from "@/__generated__/graphql";
 
 export interface MEDIA {
   media: Media[];
@@ -10,4 +15,12 @@ export interface MEDIADETAILS {
 
 export interface MEDIASDETAILS {
   mediasDetails: MediaDetails[];
+}
+
+export interface REQUESTTOKEN {
+  getRequestToken: RequestToken;
+}
+
+export interface CREATESESSION {
+  createSession: CreateSession;
 }
