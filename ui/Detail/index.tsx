@@ -3,10 +3,16 @@ import Image from "next/image";
 import { useQuery } from "@apollo/client";
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { GET_MEDIA_DETAILS } from "@/graphql/Movies/querys";
+import { GET_MEDIA_DETAILS } from "@/graphql/Movies/queries";
 import { MEDIADETAILS } from "@/utils/interfaces";
 import { getImgUrl, getLoaderImg } from "@/utils/functions";
-import { Favourite, Loader, MainLayout, Rating } from "@/components";
+import {
+  Favourite,
+  Loader,
+  MainLayout,
+  Rating,
+  RatingStars,
+} from "@/components";
 import { addMediaID, removeMediaID } from "@/redux/slices/favouritesMedia";
 import { useMemo } from "react";
 import { MediaType } from "@/__generated__/graphql";
@@ -19,6 +25,12 @@ interface Props {
 export const Detail = ({ id, type }: Props) => {
   const dispatch = useAppDispatch();
   const { favouriteMedias } = useAppSelector((state) => state.favouritesMedia);
+  const { user, isAuthenticated } = useAppSelector((state) => state.user);
+  const mediaRating = useMemo(
+    () => user.ratedMedia.find((media) => media.id === Number(id))?.rating || 0,
+    [user, id]
+  );
+  console.log("details", mediaRating);
   const favourite = useMemo(
     () => favouriteMedias.findIndex((media) => media.id === Number(id)) > -1,
     [favouriteMedias, id]
@@ -126,6 +138,18 @@ export const Detail = ({ id, type }: Props) => {
                     </div>
                   </>
                 )}
+              {isAuthenticated && (
+                <>
+                  <p className="font-bold text-sm mt-4 text-gray-200">
+                    Already watched it? Rate it:
+                  </p>
+                  <RatingStars
+                    rating={mediaRating}
+                    mediaID={Number(id)}
+                    type={type}
+                  />
+                </>
+              )}
             </div>
           </>
         )}

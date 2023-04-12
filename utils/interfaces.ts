@@ -1,8 +1,10 @@
 import {
+  AddRatingResponse,
   CreateSession,
   Media,
   MediaDetails,
   RequestToken,
+  User,
 } from "@/__generated__/graphql";
 
 export interface MEDIA {
@@ -23,4 +25,12 @@ export interface REQUESTTOKEN {
 
 export interface CREATESESSION {
   createSession: CreateSession;
+}
+
+export interface USER {
+  getUser: User;
+}
+
+export interface ADD_RATING_RESPONSE {
+  addRating: AddRatingResponse;
 }

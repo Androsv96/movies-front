@@ -55,22 +55,3 @@ export const GET_MEDIAS_DETAILS = gql(/* GraphQL */ `
     }
   }
 `);
-
-export const GET_REQUEST_TOKEN = gql(/* GraphQL */ `
-  query GetRequestToken {
-    getRequestToken {
-      success
-      expires_at
-      request_token
-    }
-  }
-`);
-
-export const CREATE_SESSION = gql(/* GraphQL */ `
-  mutation CreateSession($requestToken: String!) {
-    createSession(requestToken: $requestToken) {
-      success
-      session_id
-    }
-  }
-`);

@@ -13,6 +13,19 @@ export type Scalars = {
   Float: number;
 };
 
+export type AddRatingInput = {
+  mediaID: Scalars['Int'];
+  rating: Scalars['Int'];
+  session_id: Scalars['String'];
+  type: MediaType;
+};
+
+export type AddRatingResponse = {
+  __typename?: 'AddRatingResponse';
+  status_code: Scalars['Int'];
+  status_message: Scalars['String'];
+};
+
 export type Genres = {
   __typename?: 'Genres';
   id: Scalars['Int'];
@@ -50,7 +63,13 @@ export enum MediaType {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addRating: AddRatingResponse;
   createSession: CreateSession;
+};
+
+
+export type MutationAddRatingArgs = {
+  inputData: AddRatingInput;
 };
 
 
@@ -67,9 +86,15 @@ export type ProductionCompanies = {
 export type Query = {
   __typename?: 'Query';
   getRequestToken: RequestToken;
+  getUser: User;
   media: Array<Media>;
   mediaDetails: MediaDetails;
   mediasDetails: Array<MediaDetails>;
+};
+
+
+export type QueryGetUserArgs = {
+  sessionId: Scalars['String'];
 };
 
 
@@ -99,9 +124,23 @@ export type CreateSession = {
   success?: Maybe<Scalars['Boolean']>;
 };
 
+export type RatedMedia = {
+  __typename?: 'ratedMedia';
+  id: Scalars['Int'];
+  rating: Scalars['Float'];
+};
+
 export type RequestToken = {
   __typename?: 'requestToken';
   expires_at?: Maybe<Scalars['String']>;
   request_token?: Maybe<Scalars['String']>;
   success?: Maybe<Scalars['Boolean']>;
+};
+
+export type User = {
+  __typename?: 'user';
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  ratedMedia: Array<RatedMedia>;
+  username?: Maybe<Scalars['String']>;
 };

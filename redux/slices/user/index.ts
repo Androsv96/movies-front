@@ -1,17 +1,12 @@
-import { Media } from "@/__generated__/graphql";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AuthState, User } from "./interfaces";
 
-interface UserState {
-  isAuthenticated: boolean;
-  user: {
-    name: string;
-  };
-}
-
-const initialState: UserState = {
+const initialState: AuthState = {
   isAuthenticated: false,
   user: {
     name: "",
+    id: 0,
+    ratedMedia: [],
   },
 };
 
@@ -19,8 +14,8 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<UserState>) {
-      state.user.name = action.payload.user.name;
+    setUser(state, action: PayloadAction<User>) {
+      state.user = action.payload;
     },
     setAuth(state, action: PayloadAction<boolean>) {
       state.isAuthenticated = action.payload;

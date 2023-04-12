@@ -4,15 +4,19 @@ import { useRouter } from "next/router";
 
 import { useLazyQuery, useMutation } from "@apollo/client";
 
-import { CREATE_SESSION, GET_REQUEST_TOKEN } from "@/graphql/Movies/querys";
-import { CREATESESSION, REQUESTTOKEN } from "@/utils/interfaces";
+import { CREATESESSION, REQUESTTOKEN, USER } from "@/utils/interfaces";
 import {
   getRequestTokenURL,
   removeFromLocalStorage,
   saveToLocalStorage,
 } from "@/utils/functions";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setAuth } from "@/redux/slices/user";
+import { setAuth, setUser } from "@/redux/slices/user";
+import {
+  CREATE_SESSION,
+  GET_REQUEST_TOKEN,
+  GET_USER,
+} from "@/graphql/Authentication/";
 
 export const Authentication = () => {
   const router = useRouter();
@@ -26,8 +30,10 @@ export const Authentication = () => {
 
   const [getRequestToken, { data }] =
     useLazyQuery<REQUESTTOKEN>(GET_REQUEST_TOKEN);
-  const [createSession, { data: sessionData, loading: loadingSessionData }] =
-    useMutation<CREATESESSION>(CREATE_SESSION);
+  useLazyQuery;
+  const [getUser] = useLazyQuery<USER>(GET_USER);
+
+  const [createSession] = useMutation<CREATESESSION>(CREATE_SESSION);
 
   useEffect(() => {
     if (data) {
@@ -36,22 +42,39 @@ export const Authentication = () => {
     }
   }, [data]);
 
-  useEffect(() => {
-    if (approved) {
-      createSession({ variables: { requestToken: request_token } });
-    }
-  }, [approved, request_token]);
+  const authenticateUser = async () => {
+    const { data: sessionData } = await createSession({
+      variables: { requestToken: request_token },
+    });
 
-  useEffect(() => {
-    if (sessionData && !loadingSessionData) {
+    if (sessionData) {
       const { session_id, success } = sessionData.createSession;
       if (success) {
-        router.replace("/", undefined, { shallow: true });
         saveToLocalStorage("session_id", session_id || "");
-        dispatch(setAuth(true));
+        const { data: userData } = await getUser({
+          variables: { sessionId: session_id || "" },
+          fetchPolicy: "cache-and-network",
+        });
+        if (userData) {
+          dispatch(setAuth(true));
+          dispatch(
+            setUser({
+              id: userData.getUser.id || 0,
+              name: userData.getUser.name || "",
+              ratedMedia: userData.getUser.ratedMedia,
+            })
+          );
+        }
       }
+      router.replace("/", undefined, { shallow: true });
     }
-  }, [sessionData, loadingSessionData]);
+  };
+
+  useEffect(() => {
+    if (approved) {
+      authenticateUser();
+    }
+  }, [approved, request_token]);
 
   const handleToogleSession = () => {
     if (isAuthenticated) {

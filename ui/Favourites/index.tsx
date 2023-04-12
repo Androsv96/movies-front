@@ -4,7 +4,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { useQuery } from "@apollo/client";
 
 import { Card, Loader, MainLayout } from "@/components";
-import { GET_MEDIAS_DETAILS } from "@/graphql/Movies/querys";
+import { GET_MEDIAS_DETAILS } from "@/graphql/Movies/queries";
 import { MEDIASDETAILS } from "@/utils/interfaces";
 import { MediaType } from "@/__generated__/graphql";
 

@@ -5,15 +5,8 @@ import Link from "next/link";
 import { useQuery } from "@apollo/client";
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { GET_TOP_MEDIA } from "@/graphql/Movies/querys";
-import {
-  Button,
-  Card,
-  Loader,
-  MainLayout,
-  Rating,
-  SearchInput,
-} from "@/components";
+import { GET_TOP_MEDIA } from "@/graphql/Movies/queries";
+import { Button, Card, Loader, MainLayout, SearchInput } from "@/components";
 import { MEDIA } from "@/utils/interfaces";
 import { useRouter } from "next/router";
 import { MediaType } from "@/__generated__/graphql";
