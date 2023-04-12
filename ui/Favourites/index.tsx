@@ -5,13 +5,13 @@ import { useQuery } from "@apollo/client";
 
 import { Card, Loader, MainLayout } from "@/components";
 import { GET_MEDIAS_DETAILS } from "@/graphql/Movies/queries";
-import { MEDIASDETAILS } from "@/utils/interfaces";
+import { MEDIAS_DETAILS } from "@/utils/interfaces";
 import { MediaType } from "@/__generated__/graphql";
 
 export const Favourites = () => {
   const router = useRouter();
   const { favouriteMedias } = useAppSelector((state) => state.favouritesMedia);
-  const { data, loading } = useQuery<MEDIASDETAILS>(GET_MEDIAS_DETAILS, {
+  const { data, loading } = useQuery<MEDIAS_DETAILS>(GET_MEDIAS_DETAILS, {
     variables: { items: favouriteMedias },
   });
 

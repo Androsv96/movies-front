@@ -4,7 +4,7 @@ import { MediaType } from "@/__generated__/graphql";
 import { ADD_RATING } from "@/graphql/Movies/mutations";
 import { getFromLocalStorage } from "@/utils/functions";
 import { ADD_RATING_RESPONSE, USER } from "@/utils/interfaces";
-import { GET_USER } from "@/graphql/Authentication";
+import { GET_USER_QUERY } from "@/graphql/Authentication";
 import { setAuth, setUser } from "@/redux/slices/user";
 import { useAppDispatch } from "@/redux/hooks";
 
@@ -20,7 +20,7 @@ const stars = Array.from({ length: numOfStars }, (_, i) => i + 1);
 export const RatingStars = ({ rating = 0, mediaID, type }: Props) => {
   const dispatch = useAppDispatch();
 
-  const [getUser] = useLazyQuery<USER>(GET_USER, {
+  const [getUser] = useLazyQuery<USER>(GET_USER_QUERY, {
     fetchPolicy: "network-only",
   });
 

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { useLazyQuery, useMutation } from "@apollo/client";
 
-import { CREATESESSION, REQUESTTOKEN, USER } from "@/utils/interfaces";
+import { CREATE_SESSION, REQUEST_TOKEN, USER } from "@/utils/interfaces";
 import {
   getRequestTokenURL,
   removeFromLocalStorage,
@@ -13,9 +13,9 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setAuth, setUser } from "@/redux/slices/user";
 import {
-  CREATE_SESSION,
-  GET_REQUEST_TOKEN,
-  GET_USER,
+  CREATE_SESSION_MUTATION,
+  GET_REQUEST_TOKEN_QUERY,
+  GET_USER_QUERY,
 } from "@/graphql/Authentication/";
 
 export const Authentication = () => {
@@ -28,12 +28,13 @@ export const Authentication = () => {
   };
   const { isAuthenticated } = useAppSelector((state) => state.user);
 
-  const [getRequestToken, { data }] =
-    useLazyQuery<REQUESTTOKEN>(GET_REQUEST_TOKEN);
+  const [getRequestToken, { data }] = useLazyQuery<REQUEST_TOKEN>(
+    GET_REQUEST_TOKEN_QUERY
+  );
   useLazyQuery;
-  const [getUser] = useLazyQuery<USER>(GET_USER);
+  const [getUser] = useLazyQuery<USER>(GET_USER_QUERY);
 
-  const [createSession] = useMutation<CREATESESSION>(CREATE_SESSION);
+  const [createSession] = useMutation<CREATE_SESSION>(CREATE_SESSION_MUTATION);
 
   useEffect(() => {
     if (data) {

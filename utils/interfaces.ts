@@ -11,19 +11,19 @@ export interface MEDIA {
   media: Media[];
 }
 
-export interface MEDIADETAILS {
+export interface MEDIA_DETAILS {
   mediaDetails: MediaDetails;
 }
 
-export interface MEDIASDETAILS {
+export interface MEDIAS_DETAILS {
   mediasDetails: MediaDetails[];
 }
 
-export interface REQUESTTOKEN {
+export interface REQUEST_TOKEN {
   getRequestToken: RequestToken;
 }
 
-export interface CREATESESSION {
+export interface CREATE_SESSION {
   createSession: CreateSession;
 }
 

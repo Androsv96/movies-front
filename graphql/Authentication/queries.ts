@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const GET_REQUEST_TOKEN = gql(/* GraphQL */ `
+export const GET_REQUEST_TOKEN_QUERY = gql(/* GraphQL */ `
   query GetRequestToken {
     getRequestToken {
       success
@@ -10,7 +10,7 @@ export const GET_REQUEST_TOKEN = gql(/* GraphQL */ `
   }
 `);
 
-export const GET_USER = gql(/* GraphQL */ `
+export const GET_USER_QUERY = gql(/* GraphQL */ `
   query GetUser($sessionId: String!) {
     getUser(sessionId: $sessionId) {
       id

@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { GET_MEDIA_DETAILS } from "@/graphql/Movies/queries";
-import { MEDIADETAILS } from "@/utils/interfaces";
+import { MEDIA_DETAILS } from "@/utils/interfaces";
 import { getImgUrl, getLoaderImg } from "@/utils/functions";
 import {
   Favourite,
@@ -30,12 +30,12 @@ export const Detail = ({ id, type }: Props) => {
     () => user.ratedMedia.find((media) => media.id === Number(id))?.rating || 0,
     [user, id]
   );
-  console.log("details", mediaRating);
+
   const favourite = useMemo(
     () => favouriteMedias.findIndex((media) => media.id === Number(id)) > -1,
     [favouriteMedias, id]
   );
-  const { data, loading } = useQuery<MEDIADETAILS>(GET_MEDIA_DETAILS, {
+  const { data, loading } = useQuery<MEDIA_DETAILS>(GET_MEDIA_DETAILS, {
     variables: { id: Number(id), type },
   });
 
