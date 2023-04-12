@@ -75,7 +75,7 @@ export const Authentication = () => {
     if (approved) {
       authenticateUser();
     }
-  }, [approved, request_token]);
+  }, [approved]);
 
   const handleToogleSession = () => {
     if (isAuthenticated) {
