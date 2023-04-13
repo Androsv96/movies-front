@@ -14,7 +14,7 @@ This application uses the following technologies:
 
 - Redux: a state management library for managing application state in a predictable way.
 
-- Apollo Server: a GraphQL server implementation that allows us to query data from a variety of sources.
+- Apollo client: a GraphQL client implementation that allows us to query data from a variety of sources.
 
 ## Getting Started
 
