@@ -33,3 +33,7 @@ To get started with this application, you will need to have Node.js and npm inst
 - Initially, this web app was deployed to **AWS Amplify** (app [link](https://main.d20srcqdz8uuqy.amplifyapp.com/)) but due to a [bug](https://github.com/aws-amplify/amplify-hosting/issues/3194) related with NextJS images, I have decided to move the deployment to Vercel.
 
 - [TMDB](https://www.themoviedb.org/) API for an unkown reason, when you rate a media and then try to get the rated list of medias for that user it will return the old rated value for the recently rated media.
+
+## Production
+
+[Here](https://movies-front-eight.vercel.app/) is the web app link deployed to Heroku.
