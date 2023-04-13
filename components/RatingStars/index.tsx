@@ -44,8 +44,6 @@ export const RatingStars = ({ rating = 0, mediaID, type }: Props) => {
         fetchPolicy: "network-only",
       });
 
-      console.log(userData);
-
       if (userData) {
         dispatch(setAuth(true));
         dispatch(

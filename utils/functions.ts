@@ -7,7 +7,7 @@ import {
 } from "./constants";
 
 export const getImgUrl = (imgPath: string) => {
-  console.log(`${POSTER_IMGS_URL}${imgPath}`);
+  if (!imgPath) return NO_IMG_URL;
   return `${POSTER_IMGS_URL}${imgPath}`;
 };
 
