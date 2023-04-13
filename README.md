@@ -28,6 +28,10 @@ To get started with this application, you will need to have Node.js and npm inst
 
 - Run npm run lint to run the ESLinter and check for errors.
 
+## Backend
+
+[Here](https://github.com/Androsv96/movies-back) is the link to the graphql API git repository
+
 ## Important notes
 
 - Initially, this web app was deployed to **AWS Amplify** (app [link](https://main.d20srcqdz8uuqy.amplifyapp.com/)) but due to a [bug](https://github.com/aws-amplify/amplify-hosting/issues/3194) related with NextJS images, I have decided to move the deployment to Vercel.
